@@ -76,12 +76,12 @@ def test_get_filter_course(client, course_factory):
     i = 5
 
     # Act
-    response = client.get(f'/api/v1/courses/{courses[i].id}/')
+    response = client.get(f'/api/v1/courses/, {'id': courses[i].id}/')
 
     # Assert
-    data = response.json()
+    # data = response.json()
     assert response.status_code == 200
-    assert courses[i].name == data['name']
+    assert courses[i].name == response['id']
 
 
 
