@@ -40,7 +40,7 @@ def test_get_cource(client, course_factory):
     courses = course_factory(_quantity=1)
 
     # Act
-    response = client.get(f'/api/v1/courses/id_course={courses.id}')
+    response = client.get(f'/api/v1/courses/{courses.id}/')
 
     # Assert
     data = response.json()
