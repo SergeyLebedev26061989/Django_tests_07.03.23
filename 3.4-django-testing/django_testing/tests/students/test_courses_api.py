@@ -40,7 +40,7 @@ def test_get_cource(client, course_factory):
     courses = course_factory(_quantity=1)
 
     # Act
-    response = client.get('/api/v1/courses/')
+    response = client.get(f'/api/v1/courses/id_course={courses.id}')
 
     # Assert
     data = response.json()
@@ -76,12 +76,14 @@ def test_get_filter_course(client, course_factory):
     i = 5
 
     # Act
-    response = client.get(f'/api/v1/courses/{courses[i].id}/')
+    # response = client.get(f'/api/v1/courses/?id_course={courses[i].id}/')
+    response = client.get('/api/v1/courses/', {'id': courses[i].id})
 
     # Assert
-    data = response.json()
+    # data = response.json()
+
     assert response.status_code == 200
-    assert courses[i].name == data['name']
+    assert courses[i].name == response['id']
 
 
 
@@ -95,8 +97,6 @@ def test_get_filter_course_name(client, course_factory):
 
     # Act
     response = client.get(f'/api/v1/courses/?name={courses[i].name}')
-
-    # pprint(f'данные: {data}')
 
     # Assert
     data = response.json()
