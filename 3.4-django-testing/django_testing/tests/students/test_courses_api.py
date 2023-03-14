@@ -83,7 +83,7 @@ def test_get_filter_course(client, course_factory):
     # data = response.json()
 
     assert response.status_code == 200
-    assert courses[i].name == response['id']
+    assert courses[i].id == response['id']
 
 
 
