@@ -37,7 +37,7 @@ def student_factory():
 @pytest.mark.django_db
 def test_get_cource(client, course_factory):
     # Arrange
-    courses = course_factory(_quantity=1)
+    courses = course_factory()
 
     # Act
     response = client.get(f'/api/v1/courses/{courses.id}/')
@@ -46,7 +46,7 @@ def test_get_cource(client, course_factory):
     data = response.json()
 
     assert response.status_code == 200
-    assert courses[0].name == data[0]['name']
+    assert courses.name == data['name']
 
 
 
